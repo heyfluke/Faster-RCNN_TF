@@ -1,4 +1,5 @@
-TF_INC=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
+#TF_INC=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
+TF_INC=$(python -c 'import sys; print([p for p in sys.path if p.find("lib/python")>0 and p.find("site-")>0 and p.find("local")<0][0])')/tensorflow/include
 
 CUDA_PATH=/usr/local/cuda/
 CXXFLAGS=''
@@ -15,11 +16,11 @@ if [ -d "$CUDA_PATH" ]; then
 		-arch=sm_37
 
 	g++ -std=c++11 -shared -o roi_pooling.so roi_pooling_op.cc \
-		roi_pooling_op.cu.o -I $TF_INC  -D GOOGLE_CUDA=1 -fPIC $CXXFLAGS \
+		roi_pooling_op.cu.o -I $TF_INC -I $TF_INC/external/nsync/public  -D GOOGLE_CUDA=1 -fPIC $CXXFLAGS \
 		-lcudart -L $CUDA_PATH/lib64
 else
 	g++ -std=c++11 -shared -o roi_pooling.so roi_pooling_op.cc \
-		-I $TF_INC -fPIC $CXXFLAGS
+		-I $TF_INC -I $TF_INC/external/nsync/public -fPIC $CXXFLAGS
 fi
 
 cd ..
