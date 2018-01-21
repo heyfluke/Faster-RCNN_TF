@@ -6,9 +6,10 @@ TF_LIB=$PY_SITE_PACKAGE/tensorflow
 CUDA_PATH=/usr/local/cuda/
 CXXFLAGS='-D_GLIBCXX_USE_CXX11_ABI=0'
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-	CXXFLAGS+='-undefined dynamic_lookup'
-fi
+# I haven't encountered any undefined symbols.
+# if [[ "$OSTYPE" =~ ^darwin ]]; then
+# 	CXXFLAGS+='-undefined dynamic_lookup'
+# fi
 
 cd roi_pooling_layer
 
