@@ -13,6 +13,7 @@ import datasets.pascal_voc
 import datasets.imagenet3d
 import datasets.kitti
 import datasets.kitti_tracking
+import datasets.rectdb
 import numpy as np
 
 def _selective_search_IJCV_top_k(split, year, top_k):
@@ -45,14 +46,14 @@ for top_k in np.arange(1000, 11000, 1000):
 for year in ['2007']:
     for split in ['train', 'val', 'trainval', 'test']:
         name = 'voc_{}_{}'.format(year, split)
-        print name
+        print(name)
         __sets[name] = (lambda split=split, year=year:
                 datasets.pascal_voc(split, year))
 
 # KITTI dataset
 for split in ['train', 'val', 'trainval', 'test']:
     name = 'kitti_{}'.format(split)
-    print name
+    print(name)
     __sets[name] = (lambda split=split:
             datasets.kitti(split))
 
@@ -71,10 +72,16 @@ for year in ['2015']:
 # NTHU dataset
 for split in ['71', '370']:
     name = 'nthu_{}'.format(split)
-    print name
+    print(name)
     __sets[name] = (lambda split=split:
             datasets.nthu(split))
 
+# rectdb, here is where you place yout own data. see rectdb.py for details about the data format/layout.
+for split in ['train', 'test']:
+    name = 'imgtxt_{}'.format(split)
+    print(name)
+    __sets[name] = (lambda split=split:
+            datasets.rectdb(split))
 
 def get_imdb(name):
     """Get an imdb (image database) by name."""

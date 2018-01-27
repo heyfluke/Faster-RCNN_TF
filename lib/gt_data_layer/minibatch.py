@@ -126,7 +126,7 @@ def _vis_minibatch(im_blob, rois_blob, labels_blob, sublabels_blob):
         cls = labels_blob[i]
         subcls = sublabels_blob[i]
         plt.imshow(im)
-        print 'class: ', cls, ' subclass: ', subcls
+        print('class: ', cls, ' subclass: ', subcls)
         plt.gca().add_patch(
             plt.Rectangle((roi[0], roi[1]), roi[2] - roi[0],
                           roi[3] - roi[1], fill=False,

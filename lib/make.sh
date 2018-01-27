@@ -1,7 +1,10 @@
-#TF_INC=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
-PY_SITE_PACKAGE=$(python -c 'import sys; print([p for p in sys.path if p.find("lib/python")>0 and p.find("site-")>0 and p.find("local")<0][0])')
-TF_INC=$PY_SITE_PACKAGE/tensorflow/include
-TF_LIB=$PY_SITE_PACKAGE/tensorflow
+# TF_INC=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
+# PY_SITE_PACKAGE=$(python -c 'import sys; print([p for p in sys.path if p.find("lib/python")>0 and p.find("site-")>0 and p.find("local")<0][0])')
+# PY_SITE_PACKAGE=$(python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")
+#TF_INC=$PY_SITE_PACKAGE/tensorflow/include
+#TF_LIB=$PY_SITE_PACKAGE/tensorflow
+TF_INC=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
+TF_LIB=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_lib())')
 
 CUDA_PATH=/usr/local/cuda/
 CXXFLAGS='-D_GLIBCXX_USE_CXX11_ABI=0'

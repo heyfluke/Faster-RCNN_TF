@@ -156,7 +156,7 @@ class imdb(object):
                          'flipped' : True}
             self.roidb.append(entry)
         self._image_index = self._image_index * 2
-        print 'finish appending flipped images'
+        print('finish appending flipped images')
 
     def evaluate_recall(self, candidate_boxes, ar_thresh=0.5):
         # Record max overlap value for each gt box

@@ -144,7 +144,7 @@ def _sample_rois(roidb, fg_rois_per_image, rois_per_image, num_classes):
 
     # The indices that we're selecting (both fg and bg)
     keep_inds = np.append(fg_inds, bg_inds).astype(int)
-    # print '{} foregrounds and {} backgrounds'.format(fg_inds.size, bg_inds.size)
+    # print('{} foregrounds and {} backgrounds'.format(fg_inds.size, bg_inds.size))
     # Select sampled values from various arrays:
     labels = labels[keep_inds]
     # Clamp labels for the background RoIs to 0
@@ -321,12 +321,12 @@ def _vis_minibatch(im_blob, rois_blob, labels_blob, overlaps, sublabels_blob, vi
         cls = labels_blob[i]
         subcls = sublabels_blob[i]
         plt.imshow(im)
-        print 'class: ', cls, ' subclass: ', subcls, ' overlap: ', overlaps[i]
+        print('class: ', cls, ' subclass: ', subcls, ' overlap: ', overlaps[i])
 
         start = 3 * cls
         end = start + 3
-        # print 'view: ', view_targets_blob[i, start:end] * 180 / math.pi
-        # print 'view weights: ', view_inside_blob[i, start:end]
+        # print('view: ', view_targets_blob[i, start:end] * 180 / math.pi)
+        # print('view weights: ', view_inside_blob[i, start:end])
 
         plt.gca().add_patch(
             plt.Rectangle((roi[0], roi[1]), roi[2] - roi[0],
